@@ -74,7 +74,7 @@ cv2.setMouseCallback("image", click_and_crop)
 h,w= image.shape[0:2]
 input = image.copy()
 mask = np.zeros((h,w,4))
-white_colour = (255,255,255,255)
+# white_colour = (255,255,255,255)
 # keep looping until the 'q' key is pressed
 while True:
 	# display the image and wait for a keypress
@@ -97,12 +97,16 @@ cv2.rectangle(layer1, refPt[0], refPt[1], (255,255,255,255), -1)
 res = layer1[:]
 # tempImage = image[refPt[0],refPt[1]]
 tempImage = image[refPt[0][1]:refPt[1][1], refPt[0][0]:refPt[1][0]]
-cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\tempB.png", tempImage)
-cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\maskT4B.png", res)
+cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\tempText.png", tempImage)
+cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\maskText.png", res)
 cv2.rectangle(input, refPt[0], refPt[1], (255,255,255), -1)
-cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\inputT4B.png",input)
-
+cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\inputText.png",input)
+print('refPt = '+str(refPt))
 import os
-# os.system("python setting.py")
-# os.system("python test.py --image examples\inputT4.png --mask examples\maskT4.png --output examples\outputT4.png --checkpoint logs/pretrain_model")
+os.system("python setting.py")
+model = input("input 1 if the text in a box, 2 for the text directly on the background")
+if model == 1:
+	pass
+if model ==2:
+	os.system("python test.py --image examples\inputT4.png --mask examples\maskT4.png --output examples\outputT4.png --checkpoint logs/pretrain_model")
 

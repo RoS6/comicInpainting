@@ -1,12 +1,14 @@
 import os, io
 from google.cloud import vision
 from google.cloud.vision_v1 import types
+import cv2
 address ="C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\cre_key.json"
 os.environ['GOOGLE_APPLICATION_CREDENTIALS']=address
 client = vision.ImageAnnotatorClient()
 folder_path = "C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\"
-with io.open((folder_path + 'temp.png'),'rb') as image_files:
+with io.open((folder_path + 'tempText.png'),'rb') as image_files:
     content = image_files.read()
+refPt = [(508, 465), (578, 605)]
 def fillZero(list):
     for i in range(1,len(list)):
         if list[i-1] == ',' and list[i] == ',':
@@ -87,17 +89,57 @@ for text in texts:
 
 # print(df.description.iloc[0])
 text =str(df.description.iloc[0]).replace("\n",'')
-print(text)
-inputText = input("")
+print(text+"finished")
+# inputText = input("")
 # calculateSize()
 from googletrans import Translator
 
 translator = Translator()
 result = translator.translate(text,dest='zh-cn')
+print('yes')
 result2= translator.translate(text,dest='en')
 print(texts)
 print(text)
 print(result.text)
 print(result2.text)
 
-
+#find font and size
+# from PIL import ImageFont, ImageDraw, Image
+#
+# def find_font_size(text, font, image, target_width_ratio):
+#     tested_font_size = 100
+#     tested_font = ImageFont.truetype(font, tested_font_size)
+#     observed_width, observed_height = get_text_size(text, image, tested_font)
+#     estimated_font_size = tested_font_size / (observed_width / image.width) * target_width_ratio
+#     return round(estimated_font_size)
+#
+# def get_text_size(text, image, font):
+#     im = Image.new('RGB', (image.width, image.height))
+#     draw = ImageDraw.Draw(im)
+#     return draw.textsize(text, font)
+#
+# width_ratio = 0.5
+# font_family = "heiti.ttf"
+# # text = "Hello World"
+#
+# image = Image.open('pp.png')
+# editable_image = ImageDraw.Draw(image)
+# font_size = find_font_size(text, font_family, image, width_ratio)
+# font = ImageFont.truetype(font_family, font_size)
+#
+# print(f"Font size found = {font_size} - Target ratio = {width_ratio} - Measured ratio = {get_text_size(text, image, font)[0] / image.width}")
+position = ((refPt[0][0]-10,refPt[0][1]+20))
+outputImage = cv2.imread(folder_path+'inputText.png')
+while True:
+    # fontsize = int(input("font size of text:"))
+    cv2.putText(
+         outputImage, #numpy array on which text is written
+         result2.text, #text
+         position, #position at which writing has to start
+         cv2.FONT_HERSHEY_TRIPLEX, #font family
+         0.7, #font size
+         (0,0,0,255), #font color
+         1) #font stroke
+    # cv2.imwrite('outputText.png', outputImage)
+    cv2.imshow('outputText',outputImage)
+    cv2.waitKey(0)
