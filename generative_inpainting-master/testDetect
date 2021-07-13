@@ -33,34 +33,34 @@
 import argparse
 import cv2
 import numpy as np
-# def click(event, x, y, flags, param):
-#     if event == cv2.EVENT_LBUTTONDOWN:
-#         # mask_point.append([x,y])
-#         word_point.append([x,y])
-# def detectaWord(mask_point):
-#     for x,y in word_point:
-#         mask_point.append([x,y])
-#         if image[x,y].all()<50:
-#             word_point.append()
+def click(event, x, y, flags, param):
+    if event == cv2.EVENT_LBUTTONDOWN:
+        # mask_point.append([x,y])
+        word_point.append([x,y])
+def detectaWord(mask_point):
+    for x,y in word_point:
+        mask_point.append([x,y])
+        if image[x,y].all()<50:
+            word_point.append()
 
-# def detectWord(x,y):
-#     for i in range(x-10,x+10):
-#         for j in range(y-10,y+10):
-#             if image[i,j].all() <=100:
-#                 mask_point.append([i,j])
-#                 cv2.circle(input,(i,j),(255,255,255),-1)
-#                 cv2.circle(mask, (i,j), 0, white_colour, -1)
-#                 print(mask_point)
-#                 detectWord(i,j)
-#             elif image[i,j].all() ==255:
-#
-#                 for i,j in ([i,j],[i-1,j-1],[i-2,j-2],[i+1,j+1],[i+2,j+2]):
-#                     mask_point.append([i,j])
-#                     cv2.circle(input,(i,j),0,(255,255,255), -1)
-#                     # cv2.circle(image, center_coordinates, radius, color, thickness)
-#                     cv2.circle(mask, (i, j),0, white_colour, -1)
-#                     print(mask_point)
-#     print(mask_point)
+def detectWord(x,y):
+    for i in range(x-10,x+10):
+        for j in range(y-10,y+10):
+            if image[i,j].all() <=100:
+                mask_point.append([i,j])
+                cv2.circle(input,(i,j),(255,255,255),-1)
+                cv2.circle(mask, (i,j), 0, white_colour, -1)
+                print(mask_point)
+                detectWord(i,j)
+            elif image[i,j].all() ==255:
+
+                for i,j in ([i,j],[i-1,j-1],[i-2,j-2],[i+1,j+1],[i+2,j+2]):
+                    mask_point.append([i,j])
+                    cv2.circle(input,(i,j),0,(255,255,255), -1)
+                    # cv2.circle(image, center_coordinates, radius, color, thickness)
+                    cv2.circle(mask, (i, j),0, white_colour, -1)
+                    print(mask_point)
+    print(mask_point)
 import cv2
 import numpy as np
 

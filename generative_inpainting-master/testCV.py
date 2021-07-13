@@ -66,7 +66,7 @@ def click_and_crop(event, x, y, flags, param):
 #                     print(mask_point)
 #     print(mask_point)
 # load the image, clone it, and setup the mouse callback function
-image = cv2.imread("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\003.png")
+image = cv2.imread("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\005.png")
 clone = image.copy()
 cv2.namedWindow("image")
 cv2.setMouseCallback("image", click_and_crop)
@@ -95,12 +95,14 @@ layer1 = np.zeros((h, w, 4))
 cv2.rectangle(layer1, refPt[0], refPt[1], (255,255,255,255), -1)
 
 res = layer1[:]
-tempImage = image[refPt[0],refPt[1]]
-cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\temp.png", tempImage)
-cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\maskT4.png", res)
+# tempImage = image[refPt[0],refPt[1]]
+tempImage = image[refPt[0][1]:refPt[1][1], refPt[0][0]:refPt[1][0]]
+cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\tempB.png", tempImage)
+cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\maskT4B.png", res)
 cv2.rectangle(input, refPt[0], refPt[1], (255,255,255), -1)
-cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\inputT4.png",input)
+cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\inputT4B.png",input)
 
 import os
-os.system("python test.py --image examples\inputT4.png --mask examples\maskT4.png --output examples\outputT4.png --checkpoint logs/pretrain_model")
+# os.system("python setting.py")
+# os.system("python test.py --image examples\inputT4.png --mask examples\maskT4.png --output examples\outputT4.png --checkpoint logs/pretrain_model")
 
