@@ -66,7 +66,7 @@ def click_and_crop(event, x, y, flags, param):
 #                     print(mask_point)
 #     print(mask_point)
 # load the image, clone it, and setup the mouse callback function
-image = cv2.imread("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\005.png")
+image = cv2.imread("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\003.png")
 clone = image.copy()
 cv2.namedWindow("image")
 cv2.setMouseCallback("image", click_and_crop)
@@ -97,16 +97,17 @@ cv2.rectangle(layer1, refPt[0], refPt[1], (255,255,255,255), -1)
 res = layer1[:]
 # tempImage = image[refPt[0],refPt[1]]
 tempImage = image[refPt[0][1]:refPt[1][1], refPt[0][0]:refPt[1][0]]
-cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\tempText.png", tempImage)
-cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\maskText.png", res)
+cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\tempText2.png", tempImage)
+cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\maskText2.png", res)
 cv2.rectangle(input, refPt[0], refPt[1], (255,255,255), -1)
-cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\inputText.png",input)
+cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\inputText2.png",input)
 print('refPt = '+str(refPt))
 import os
-os.system("python setting.py")
-model = input("input 1 if the text in a box, 2 for the text directly on the background")
-if model == 1:
-	pass
-if model ==2:
-	os.system("python test.py --image examples\inputT4.png --mask examples\maskT4.png --output examples\outputT4.png --checkpoint logs/pretrain_model")
 
+# model = input("input 1 if the text in a box, 2 for the text directly on the background")
+# if model == 1:
+# 	pass
+# if model ==2:
+os.system("python test.py --image examples\inputText2.png --mask examples\maskText2.png --output examples\inputText2.png --checkpoint logs/pretrain_model")
+# os.system("python setting.py")
+print(refPt)

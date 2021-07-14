@@ -1,14 +1,15 @@
 import os, io
 from google.cloud import vision
 from google.cloud.vision_v1 import types
+from PIL import Image, ImageDraw
 import cv2
 address ="C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\cre_key.json"
 os.environ['GOOGLE_APPLICATION_CREDENTIALS']=address
 client = vision.ImageAnnotatorClient()
 folder_path = "C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\"
-with io.open((folder_path + 'tempText.png'),'rb') as image_files:
+with io.open((folder_path + 'tempText2.png'),'rb') as image_files:
     content = image_files.read()
-refPt = [(508, 465), (578, 605)]
+refPt = [(66, 323), (236, 625)]
 def fillZero(list):
     for i in range(1,len(list)):
         if list[i-1] == ',' and list[i] == ',':
@@ -129,17 +130,77 @@ print(result2.text)
 #
 # print(f"Font size found = {font_size} - Target ratio = {width_ratio} - Measured ratio = {get_text_size(text, image, font)[0] / image.width}")
 position = ((refPt[0][0]-10,refPt[0][1]+20))
-outputImage = cv2.imread(folder_path+'inputText.png')
-while True:
-    # fontsize = int(input("font size of text:"))
-    cv2.putText(
-         outputImage, #numpy array on which text is written
-         result2.text, #text
-         position, #position at which writing has to start
-         cv2.FONT_HERSHEY_TRIPLEX, #font family
-         0.7, #font size
-         (0,0,0,255), #font color
-         1) #font stroke
-    # cv2.imwrite('outputText.png', outputImage)
-    cv2.imshow('outputText',outputImage)
-    cv2.waitKey(0)
+# outputImage = cv2.imread(folder_path+'inputText.png')
+def changeLine(text,refpt):
+    pass
+import textwrap
+from PIL import Image, ImageDraw, ImageFont
+# while True:
+#     # # fontsize = int(input("font size of text:"))
+#     # cv2.putText(
+#     #      outputImage, #numpy array on which text is written
+#     #      result2.text, #text
+#     #      position, #position at which writing has to start
+#     #      cv2.FONT_HERSHEY_TRIPLEX, #font family
+#     #      0.7, #font size
+#     #      (0,0,0,255), #font color
+#     #      1) #font stroke
+#     # # cv2.imwrite('outputText.png', outputImage)
+#
+#     # astr = '''The rain in Spain falls mainly on the plains.'''
+#     # para = textwrap.wrap(result2, width=15)
+#     MAX_W, MAX_H = (refPt[1][0]-refPt[0][0]),(refPt[1][1]-refPt[0][1])
+#     # im = Image.new('RGB', (MAX_W, MAX_H), (0, 0, 0, 0))
+#     para = textwrap.wrap(result2, 10)
+#     draw = ImageDraw.Draw(outputImage)
+#     font = ImageFont.truetype(
+#         '/usr/share/fonts/truetype/msttcorefonts/Arial.ttf', 18)
+#     current_h, pad = 50, 10
+#     for line in para:
+#         w, h = draw.textsize(line, font=font)
+#         draw.text(((MAX_W - w) / 2, current_h), line, font=font)
+#         current_h += h + pad
+#     outputImage.save(folder_path+'outputText.png')
+#     cv2.imshow('outputText',outputImage)
+#     cv2.imwrite(folder_path+'OutputwithText.png',outputImage)
+#     cv2.waitKey(0)
+lines = textwrap.wrap(result2.text, width=10)
+y_text = 0
+firstLine = max(lines, key=lambda line: len(line))
+W, H = (refPt[1][0]-refPt[0][0]),(refPt[1][1]-refPt[0][1])
+    # im = Image.new("RGBA", (W, H), "black")
+    # im = Image.fromarray(resizelist[val])
+outputImage = Image.open(folder_path+'inputText2.png')
+draw = ImageDraw.Draw(outputImage)
+fontsize =45
+img_fraction = 0.50
+font = ImageFont.truetype("arial.ttf", fontsize)
+# #auto select font size according to the length of text and width of mask
+# while font.getsize(firstLine)[0] < W:
+#     fontsize += 1
+#     font = ImageFont.truetype("arial.ttf", fontsize)
+# fontsize -= 1
+# font = ImageFont.truetype("arial.ttf", fontsize)
+# w, h = draw.textsize(firstLine)
+
+for i in lines:
+    print(i)
+# i = result2.text
+#     W, H = (refPt[1][0]-refPt[0][0]),(refPt[1][1]-refPt[0][1])
+#     # im = Image.new("RGBA", (W, H), "black")
+#     # im = Image.fromarray(resizelist[val])
+#     outputImage = Image.open(folder_path+'inputText2.png')
+#     draw = ImageDraw.Draw(outputImage)
+#     fontsize =7
+#     img_fraction = 0.50
+#     font = ImageFont.truetype("arial.ttf", fontsize)
+#     while font.getsize(i)[0] < W:
+#         fontsize += 1
+#         font = ImageFont.truetype("arial.ttf", fontsize)
+#     fontsize -= 1
+#     font = ImageFont.truetype("arial.ttf", fontsize)
+#
+#     w, h = draw.textsize(i)
+    draw.text((refPt[0][0], refPt[0][1]+y_text), i, fill="black",font = font,stroke_width=7,stroke_fill=(255,255,255))
+    outputImage.save(folder_path+"outputwithText2.png", "PNG")
+    y_text += fontsize
