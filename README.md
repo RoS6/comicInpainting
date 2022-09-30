@@ -9,7 +9,11 @@
    * Used deepfill v2 to inpaint the removed part of words. 
    * Use google api to recognise the words in different languages in selected area. Allow user edit the recognised word before translation.
    * Developing a U-Net to recognise the area contains word automatically. 
-   
+
+### Citation:
+   * Applied DeepFill v2: https://github.com/JiahuiYu/generative_inpainting.git 
+   * Pretrained model of inpainting obtained from DeepFill v2.
+
 ### Demo:
 
 https://user-images.githubusercontent.com/38854438/193233656-81c36188-7e53-43b2-9009-8e4c09c37932.mp4
