@@ -1,0 +1,133 @@
+# import cv2
+# import numpy as np
+#
+# image = cv2.imread("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\005.png")
+# h,w= image.shape[0:2]
+# input = image.copy()
+# mask = np.zeros((h,w,4))
+# white_colour = (255,255,255,255)
+# click_point = []
+# mask_point = []
+#
+# def detectWord(x,y):
+#     # assert image[x,y].any() != 0,"Click on the words only"
+#     for i in range(x-10,x+10):
+#         for j in range(y-10,y+10):
+#             if image[i,j].all() <=100:
+#                 mask_point.append([i,j])
+#                 cv2.circle(input,(i,j),(255,255,255),-1)
+#                 cv2.circle(mask, (i,j), 0, white_colour, -1)
+#                 print(mask_point)
+#                 detectWord(i,j)
+#             elif image[i,j].all() >=100:
+#                 for i,j in ([i,j],[i-1,j-1],[i-2,j-2],[i+1,j+1],[i+2,j+2]):
+#                     mask_point.append([i,j])
+#                     cv2.circle(input,(i,j),0,(255,255,255), -1)
+#                     # cv2.circle(image, center_coordinates, radius, color, thickness)
+#                     cv2.circle(mask, (i, j),0, white_colour, -1)
+#                     print(mask_point)
+#     print(mask_point)
+# print(image)
+# detectWord(456,271)
+# import the necessary packages
+import argparse
+import cv2
+import numpy as np
+def click(event, x, y, flags, param):
+    if event == cv2.EVENT_LBUTTONDOWN:
+        # mask_point.append([x,y])
+        word_point.append([x,y])
+def detectaWord(mask_point):
+    for x,y in word_point:
+        mask_point.append([x,y])
+        if image[x,y].all()<50:
+            word_point.append()
+
+def detectWord(x,y):
+    for i in range(x-10,x+10):
+        for j in range(y-10,y+10):
+            if image[i,j].all() <=100:
+                mask_point.append([i,j])
+                cv2.circle(input,(i,j),(255,255,255),-1)
+                cv2.circle(mask, (i,j), 0, white_colour, -1)
+                print(mask_point)
+                detectWord(i,j)
+            elif image[i,j].all() ==255:
+
+                for i,j in ([i,j],[i-1,j-1],[i-2,j-2],[i+1,j+1],[i+2,j+2]):
+                    mask_point.append([i,j])
+                    cv2.circle(input,(i,j),0,(255,255,255), -1)
+                    # cv2.circle(image, center_coordinates, radius, color, thickness)
+                    cv2.circle(mask, (i, j),0, white_colour, -1)
+                    print(mask_point)
+    print(mask_point)
+import cv2
+import numpy as np
+
+image = cv2.imread("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\003.png")
+clone = image.copy()
+cv2.namedWindow("image")
+cv2.setMouseCallback("image", click)
+# image = cv2.imread("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\005.png")
+h,w= image.shape[0:2]
+input = image.copy()
+mask = np.zeros((h,w,4))
+white_colour = (255,255,255,255)
+mask_point = []
+word_point = []
+# keep looping until the 'q' key is pressed
+while True:
+    # display the image and wait for a keypress
+    cv2.imshow("image", image)
+    key = cv2.waitKey(1) & 0xFF
+    # if the 'r' key is pressed, reset the cropping region
+    if key == ord("r"):
+        image = clone.copy()
+    # if the 'c' key is pressed, break from the loop
+    elif key == ord("c"):
+        break
+    elif key == ord('p'):
+        import sys
+        sys.exit()
+
+layer1 = np.zeros((h, w, 4))
+
+cv2.rectangle(layer1, refPt[0], refPt[1], (255,255,255,255), -1)
+
+res = layer1[:]
+
+cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\maskT3.png", res)
+cv2.rectangle(input, refPt[0], refPt[1], (255,255,255), -1)
+cv2.imwrite("C:\\Users\\28340\\Documents\\UCL\\internship\\2ndYear\\summerResearch\\generative_inpainting-master (1)\\generative_inpainting-master\\examples\\inputT3.png",input)
+
+# Load image, grayscale, Gaussian blur, adaptive threshold
+image = cv2.imread('003.png')
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+blur = cv2.GaussianBlur(gray, (9,9), 0)
+thresh = cv2.adaptiveThreshold(blur,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV,11,30)
+
+# Dilate to combine adjacent text contours
+kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (9,9))
+dilate = cv2.dilate(thresh, kernel, iterations=4)
+
+# Find contours, highlight text areas, and extract ROIs
+cnts = cv2.findContours(dilate, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+cnts = cnts[0] if len(cnts) == 2 else cnts[1]
+
+ROI_number = 0
+for c in cnts:
+    area = cv2.contourArea(c)
+    if area > 10000:
+        x,y,w,h = cv2.boundingRect(c)
+        cv2.rectangle(image, (x, y), (x + w, y + h), (36,255,12), 3)
+        # ROI = image[y:y+h, x:x+w]
+        # cv2.imwrite('ROI_{}.png'.format(ROI_number), ROI)
+        # ROI_number += 1
+
+cv2.imshow('thresh', thresh)
+cv2.imshow('dilate', dilate)
+cv2.imshow('image', image)
+cv2.waitKey()
+
+import os
+os.system("python test.py --image examples\inputT2.png --mask examples\maskT2.png --output examples\outputT2.png --checkpoint logs/pretrain_model")
