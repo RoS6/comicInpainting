@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "mangaresearch",
+  "private_key_id": "4087490424bfa59c0eed7f809653c987c8d963d4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCxddK1UOTJBgu7\nC370ndrdCAuLloaakIKJZldFhHgyeIowuijmrhcR4mzsks3zdyvjNN61jI0xUNqy\n2IYC9IIL7fcXW9/gvPdVv5pI39/jKRrL/ovP18uxJalAt1WxolhWtu2CSBKsbmJS\nhgXr9RnkwjcZc9S3bYP13t9ugXBaf2ok+C2HDKYF5xZFfTW9cJCXfYwXvllU33Tr\nmzytd42bWMSbqEn+IM9/SF+1SG7s0Kgh/fT0RRrLEYDgyHkFIjFlh6J6RBP9DOQg\n5HhHnkBGjC60XkYsSRew1nRrVjUiXeh1J0pW1mhqADodKW/LodmKLVF5xPJHnSTf\nEQWXELWbAgMBAAECggEAKXNoAEog5oOvAcWxpdmpYa+bYsOKNVhD5WwuPmKu4Lsf\nLDqPizJm2RqWbrvrt07CxZN34dgusrI8I0JIKzCJn9e5u48OQCRjcXgLxbHlTd4w\nEC4o4id5wKsXWbJ5JcDR+Y9I8wF6uyQde0Eq6O6bWb+ztxJDQYUnKashbWJ2p+xv\neWXHxrPBXrVL93+auMrw+c/xSdWbrlaeV4HDW9I+jHHqNW4dR4mc/0L44hpTnbWK\nTzC0InWoystVB7KlACRXsvkCshXVmemXAe+05YqmEOvY45OAxpnigzqXj+Kdi/JF\nzGIMhhv/zsiR8nCCkgMFLrMssfyltqa8mU8qyMnJgQKBgQDaGSPNugjoqlqOBmEG\n5/Cz9NEOAy0DKAx9twYxW1h+3j0DhN360e9QJ0dFOVwyX7EJ/1KWswaV9KBtF/xG\nl21tuvrZvGcMXcKkBYG0cPse188pZBlc//isviVoQ393k5RShMoS3vZTJakeIm+g\nbxuQO7woxSW7IyTWrfUN7O5rqwKBgQDQTMMHfmxK3L3r52udZtSV+9O0+EpWcY1A\navbtht+JTw+8at6ZdpjWn+o5PKe1j3IHnRmvrYOhy3gan6nvn2KfSa1ELLJKUaQB\nb6AxQTShNKSkMcJlfgNWmAhuHNT6L95+e17fs6tFt8qfG0L9rRqrNY1DpOEtUiaB\n92Jngrlt0QKBgERq5IdyF79dSYEKUT/IXQMnBrndly5JTvnVA5VSMYXDE+LZuIUp\nfGhpmfsGTnzi9ffL582spaE/F2CByLsgX8yvfmf1qWIAu8GWlKTVWIHJc4xpgWdi\nSVFvaO63VfJeEoZ8b6PR2/Yjd1Ujul7a3Au4IYOsrPRyxuits5VFwVl3AoGAcLbI\n5hoz8UKHhsqgQfkt2cb+JTQhzar+WzhGS/uqpDti8XsG3xX82E6KSNSYj7eCZbpN\n9vE2hGt8nzN8mkyt6jHND1H8XBjXXWuQzHZTS1QYLz05yv+oQMhd72+sk4EprVmG\n2hf3+u7cNsJiurBb+P8uZMcojgShD7zUw9xKCLECgYEAqVoozxwb/dstCS1bVESI\nKZKB5fQHM3bb7ObMquoqe9ugR6KbE4M6PwL8JCJCRlY4pzg/YjNvvcxX8qjLY2Tb\nsjtxZkR8ix98Sbn5kDBTrHdlBxG9g+94P3/3nkcoGpG15bUE4qDN2jTZ+da1wvgp\nh5i2+GeXsAB7VO0qi7yrpDk=\n-----END PRIVATE KEY-----\n",
+  "client_email": "visionapi@mangaresearch.iam.gserviceaccount.com",
+  "client_id": "101972999433012741997",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/visionapi%40mangaresearch.iam.gserviceaccount.com"
+}
